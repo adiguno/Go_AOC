@@ -32,14 +32,17 @@ func main() {
 	for index, line := range lines {
 		lineSum := getSum(getDigits(line))
 		total += lineSum
-		fmt.Printf("index %d: ", index)
-		fmt.Printf("%s, ", line)
-		fmt.Printf("sum = %d, ", lineSum)
-		fmt.Printf("total = %d\n", total)
+		if index < 10 {
+
+			fmt.Printf("index %d: ", index)
+			fmt.Printf("%s, ", line)
+			fmt.Printf("sum = %d, ", lineSum)
+			fmt.Printf("total = %d\n", total)
+		}
 
 	}
 
-	fmt.Println("total", total)
+	fmt.Println("total", total) // correct = 55208
 
 }
 
@@ -54,10 +57,8 @@ func getSum(num1 int, num2 int) int {
 func getDigits(text string) (int, int) {
 	var first, last int
 	var firstFound, lastFound bool
-	i := 0
 
-	for i < len(text) {
-		char := text[i] //byte, rune?
+	for _, char := range text {
 		if unicode.IsDigit(rune(char)) {
 			if !firstFound {
 				first, _ = strconv.Atoi(string(char))
@@ -71,7 +72,7 @@ func getDigits(text string) (int, int) {
 				lastFound = true
 			}
 		}
-		i++
+
 	}
 
 	return first, last
