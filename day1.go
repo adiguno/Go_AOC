@@ -73,10 +73,15 @@ func getDigits(text string) (int, int) {
 	// single number
 	// 2+ numbers
 	for i < len(text) {
-		char := text[i]
+		char := text[i] //byte
 		if unicode.IsDigit(rune(char)) {
 			if !firstFound {
 				first = int(char)
+				firstRune := rune(char)
+				fmt.Println("char", char)
+				fmt.Println("firstRune", firstRune)
+				fmt.Println("firstRune int", int(firstRune))
+				fmt.Println("firstRune int string", string(int(firstRune)))
 				// fmt.Println(string(char))
 				// fmt.Printf("first: %d\n", first)
 				firstFound = true
