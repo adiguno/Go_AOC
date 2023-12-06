@@ -20,6 +20,7 @@ func main() {
 	// }
 	// fileString := string(fileBytes)
 
+	// read file
 	file, err := os.Open("day1_input")
 	if err != nil {
 		fmt.Print(err)
@@ -36,25 +37,32 @@ func main() {
 		fmt.Print(scanner.Err())
 	}
 
-	// for i, line := range lines {
-	// 	// fmt.Println(i, line)
-	// 	fmt.Println(i)
-	// 	getDigits(line)
-	// }
 	var total int
-	total += getSum(getDigits("1abc2"))
-	a := getSum(getDigits("1abc2"))
-	// a := getSum(getDigitsForRangeLoop("1labc2"))
-	if a == 12 {
-		fmt.Println("sum working: yes")
-	} else if a == 540 {
-		fmt.Println("bad")
+	for index, line := range lines {
+		// fmt.Println(i, line)
+		lineSum := getSum(getDigits(line))
+		total += lineSum
+		fmt.Printf("index %d: ", index)
+		fmt.Printf("%s, ", line)
+		fmt.Printf("sum = %d, ", lineSum)
+		fmt.Printf("total = %d\n", total)
+
 	}
-	// fmt.Println("First Integer:", 12)
+
+	// testing
+	// total += getSum(getDigits("1abc2"))
+	// a := getSum(getDigits("1abc2"))
+	// // a := getSum(getDigitsForRangeLoop("1labc2"))
+	// if a == 12 {
+	// 	fmt.Println("sum working: yes")
+	// } else if a == 540 {
+	// 	fmt.Println("bad")
+	// }
+	// // fmt.Println("First Integer:", 12)
 
 	// fmt.Println(string(rune((total))))
+	// fmt.Printf("Type of total: %T\n", total)
 	fmt.Println("total", total)
-	fmt.Printf("Type of total: %T\n", total)
 
 }
 
@@ -64,7 +72,7 @@ func getSum(num1 int, num2 int) int {
 
 // cases
 // no number
-// single number
+// single number => same number repeated
 // 2+ numbers
 func getDigits(text string) (int, int) {
 	// fmt.Println(text)
@@ -84,21 +92,24 @@ func getDigits(text string) (int, int) {
 				// firstRune := rune(char)
 				// first = int(firstRune)
 				first, _ = strconv.Atoi(string(char))
+				last = first
 
 				// fmt.Prsntln("char", char)
 				// fmt.Println("firstRune", firstRune)
 				// fmt.Println("firstRune int", int(firstRune))
 				// fmt.Println("firstRune int string", string(int(firstRune))) // 1 expected
-				fmt.Println("firstRune int string", first) // 1 expected
 				// fmt.Println(string(char))
 				// fmt.Printf("first: %d\n", first)
+				// fmt.Println("firstRune int string", first) // 1 expected
 				firstFound = true
-			} else if firstFound && !lastFound {
-				// last = int(rune(char))
-				last, _ = strconv.Atoi(string(char))
-
 				lastFound = true
 			} else if lastFound {
+				// else if firstFound && !lastFound {
+				// 	// last = int(rune(char))
+				// 	last, _ = strconv.Atoi(string(char))
+
+				// 	lastFound = true
+				// }
 				// last = int(rune(char))
 				last, _ = strconv.Atoi(string(char))
 				lastFound = true
