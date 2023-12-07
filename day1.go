@@ -54,12 +54,14 @@ func getSum(num1 int, num2 int) int {
 // no number
 // single number => same number repeated
 // 2+ numbers
+// above three + numbers spelled out as letters
 func getDigits(text string) (int, int) {
 	var first, last int
 	var firstFound, lastFound bool
+	// validNumbers := [...]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
 
 	for _, char := range text {
-		if unicode.IsDigit(rune(char)) {
+		if unicode.IsDigit(char) {
 			if !firstFound {
 				first, _ = strconv.Atoi(string(char))
 				last = first
@@ -71,6 +73,9 @@ func getDigits(text string) (int, int) {
 				last, _ = strconv.Atoi(string(char))
 				lastFound = true
 			}
+		} else if unicode.IsLetter(char) {
+			// todo implement a trie
+			fmt.Println()
 		}
 
 	}
